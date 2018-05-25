@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
     this.state = {};
     this.getPosts = this.getPosts.bind(this);
+    this.showPost = this.showPost.bind(this);
   }
 
   componentDidMount() {
@@ -23,9 +24,19 @@ class App extends Component {
       this.setState({ posts: data });
     }).catch((err) => { throw err; });
   }
+
+  showPost(postId, e) {
+    e.preventDefault();
+    const { posts } = this.state;
+    const post = posts.filter((item) => {
+      if (item.id === postId) return true;
+      return false;
+    });
+    this.setState({ post });
+  }
   
   render() {
-    return (<AppView posts={this.state.posts}  />);
+    return (<AppView posts={this.state.posts} post={this.state.post} showPost={this.showPost} />);
   }
 }
 
