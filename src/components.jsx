@@ -4,8 +4,9 @@ const PostList = props =>
   props.posts.map(post => (
     <div key={post.id}>
       <div>
-        <a href="" >{post.title.rendered}</a>
+        <a href="">{post.title.rendered}</a>
       </div>
+      <p dangerouslySetInnerHTML={{ __html: post.content.rendered }} key={post.id} align="justify" />);
       <hr />
     </div>
   ));
