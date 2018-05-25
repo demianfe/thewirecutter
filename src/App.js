@@ -2,6 +2,7 @@ import request from 'request-promise';
 
 import React, { Component } from 'react';
 import './App.css';
+import AppView from './components';
 
 const url = 'https://thewirecutter.com/wp-json/wp/v2/posts';
 
@@ -19,13 +20,12 @@ class App extends Component {
   getPosts() {
     request(url).then((rawData) => {
       const data = JSON.parse(rawData);
-      console.log(data);
-      this.setState({ posts: data.posts });
+      this.setState({ posts: data });
     }).catch((err) => { throw err; });
   }
-
+  
   render() {
-    return (<div />);
+    return (<AppView posts={this.state.posts}  />);
   }
 }
 
